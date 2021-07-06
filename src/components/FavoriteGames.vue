@@ -1,5 +1,6 @@
 <template>
-  <div>
+<div v-if="!this.games"> No favorite games to show</div>
+  <div v-else>
     <GamePreview
       v-for="g in games"
       :id="g.id" 
@@ -7,8 +8,9 @@
       :guestTeam="g.guestTeam" 
       :date="g.date" 
       :hour="g.hour" 
-      :key="g.id"></GamePreview>
-  </div>
+      :key="g.id">
+      </GamePreview>
+      </div>
 </template>
 
 <script>
@@ -55,10 +57,10 @@ export default {
         for(let i=0; i < future_games_count; i++){
 
           let home_team_details = await this.axios.get(
-          `http://localhost:3000/teams/${response.data[i].home_team_id}`,
+          `http://localhost:3000/teams/teamFullDetails/${response.data[i].home_team_id}`,
           );
           let guest_team_details = await this.axios.get(
-          `http://localhost:3000/teams/${response.data[i].guest_team_id}`,
+          `http://localhost:3000/teams/teamFullDetails/${response.data[i].guest_team_id}`,
           );
           // console.log(response.data[i].gamedetails[0].gameid);
           let game_details = {

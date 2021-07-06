@@ -11,7 +11,8 @@
         Season: {{ current_season_name }}
         <br/>
         Stage: {{ current_stage_name }}
-        <br/>   
+        <br/>
+        <br/>
           <GamePreview
             :hostTeam="game_details.home_team_name" 
             :guestTeam="game_details.guest_team_name" 
@@ -19,7 +20,7 @@
             >
           </GamePreview>
       </b-card-text>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
+      <!-- <b-button href="#" variant="primary">Go somewhere</b-button> -->
     </b-card>
   </div>
 </template>
@@ -34,9 +35,9 @@ name : "LeagueInfo",
   },
  data() {
     return {
-      league_name: "superliga", 
-      current_season_name: "season", 
-      current_stage_name: "stage",
+      league_name: "", 
+      current_season_name: "", 
+      current_stage_name: "",
       game_details: {}
     };
   },
@@ -52,11 +53,11 @@ name : "LeagueInfo",
         let game_data = response.data.game_details[0];
         console.log(game_data)
         let home_team_details = await this.axios.get(
-          `http://localhost:3000/teams/${game_data.home_team_id}`,
+          `http://localhost:3000/teams/teamFullDetails/${game_data.home_team_id}`,
           {}
           );
         let guest_team_details = await this.axios.get(
-          `http://localhost:3000/teams/${game_data.guest_team_id}`,
+          `http://localhost:3000/teams/teamFullDetails/${game_data.guest_team_id}`,
           {}
           );
         this.game_details = {
@@ -78,15 +79,9 @@ name : "LeagueInfo",
 
 <style>
 .league-preview {
-  display: inline-block;
   width: 250px;
   height: 200px;
   position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:rgb(44, 89, 116);
 }
 
 .league-preview .league-title {

@@ -3,12 +3,36 @@
     <div :title="id" class="team-title">
       <b>Team Name:</b> {{ team_name }}
     </div>
-    <ul class="team-content">
-      <li> Team Logo: {{ team_logo }}</li>
-      <li> Players: {{ players }}</li>
-      <li> Past Games: {{ past_games }}</li>
-      <li> Future Games: {{ future_games }}</li>
-    </ul>
+      <img width="100" height="150" :src="team_logo">
+      <div class="players">
+       <h2>Players</h2>   
+      <PlayerPreview v-for="player in players" 
+                  :key="player.id"
+                  :fullname="player.fullname"
+                  :team_name="player.team_name"
+                  :image="player.image"
+                  :position="player.position"></PlayerPreview>
+          </div>
+      <div  class="futureGames">
+          <h2>Future Games</h2>  
+          <GamePreview v-for="g in future_games"
+            :hostTeam="g.hostTeam" 
+            :guestTeam="g.guestTeam" 
+            :date="g.date" 
+            :hour="g.hour" 
+            :key="g.id"></GamePreview>
+          <p v-if="future_games.length==0">There are no future games to show</p>
+      </div>
+      <div class="pastGames">
+          <h2>Past Games</h2>
+          <GamePreview v-for="g in past_games"             
+          :hostTeam="g.hostTeam" 
+            :guestTeam="g.guestTeam" 
+            :date="g.date" 
+            :hour="g.hour" 
+            :key="g.id"></GamePreview>
+          <p v-if="past_games.length==0">There are no past games to show</p>
+      </div>
   </div>
 </template>
 

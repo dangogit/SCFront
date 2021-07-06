@@ -1,7 +1,7 @@
 <template>
   <div class="game-preview">
     <div :title="id" class="game-title">
-   <!--   <b>Game Id:</b> {{ id }} -->
+      <b>Next game:</b>
     </div>
     <ul class="game-content">
       <li> host: {{ hostTeam }}</li>
@@ -38,21 +38,14 @@ export default {
 
 <style>
 .game-preview {
-  display: inline-block;
   width: 250px;
-  height: 200px;
-  position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+  height: 100px;
 }
 
 .game-preview .game-title {
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
-  color:  rgb(111, 197, 157);
+  color:  #42b983;
 }
 
 .game-preview .game-content {

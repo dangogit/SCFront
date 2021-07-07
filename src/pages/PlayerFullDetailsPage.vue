@@ -13,11 +13,12 @@
 
     <div v-if="this.playerFound">
     <h1 >Player Page</h1>
-    <PlayerPreview :fullname="fullname"
+    <PlayerPreview :full_name="full_name"
                   :team_name="team_name"
                   :image="image"
                   :position="position"
     ></PlayerPreview>
+    <h3> Full details: </h3>
     <PlayerFullDetails :commonName="commonName" 
                         :nationality="nationality"
                         :birthdate="birthdate"

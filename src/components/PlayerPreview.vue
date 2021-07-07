@@ -1,12 +1,14 @@
 <template>
   <div class="player-preview">
     <div :title="id" class="player-title">
-      <b>Player Fullname:</b> {{ fullname }}
+      <b> {{ fullname }}</b>
+      <img width="100" height="150" :src="image">
+
     </div>
     <ul class="player-content">
       <li> Team name: {{ team_name }}</li>
-      <li> Image: {{ image }}</li>
       <li> Position: {{ position }}</li>
+
     </ul>
   </div>
 </template>
@@ -15,7 +17,7 @@
 export default {
   name: "PlayerPreview",
   props: {
-      fullname: {
+      full_name: {
         type: String,
         required: true
       },
@@ -42,18 +44,11 @@ export default {
 .player-preview {
   display: inline-block;
   width: 250px;
-  height: 200px;
-  position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
+  height: 90px;
 }
 
 .player-preview .player-title {
   text-align: center;
-  text-transform: uppercase;
   color:  rgb(111, 197, 157);
 }
 

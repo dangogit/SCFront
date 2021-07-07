@@ -1,14 +1,14 @@
 <template>
   <div class="team-full">
     <div :title="id" class="team-title">
-      <b>Team Name:</b> {{ team_name }}
+      <b> {{ team_name }} </b>
     </div>
       <img width="100" height="150" :src="team_logo">
       <div class="players">
        <h2>Players</h2>   
       <PlayerPreview v-for="player in players" 
-                  :key="player.id"
-                  :fullname="player.fullname"
+                  :key="player.full_name"
+                  :fullname="player.full_name"
                   :team_name="player.team_name"
                   :image="player.image"
                   :position="player.position"></PlayerPreview>
@@ -18,9 +18,8 @@
           <GamePreview v-for="g in future_games"
             :hostTeam="g.hostTeam" 
             :guestTeam="g.guestTeam" 
-            :date="g.date" 
-            :hour="g.hour" 
-            :key="g.id"></GamePreview>
+            :date="g.date_time"
+            :key="g.date_time"></GamePreview>
           <p v-if="future_games.length==0">There are no future games to show</p>
       </div>
       <div class="pastGames">
@@ -28,9 +27,8 @@
           <GamePreview v-for="g in past_games"             
           :hostTeam="g.hostTeam" 
             :guestTeam="g.guestTeam" 
-            :date="g.date" 
-            :hour="g.hour" 
-            :key="g.id"></GamePreview>
+            :date="g.date_time" 
+            :key="g.date_time"></GamePreview>
           <p v-if="past_games.length==0">There are no past games to show</p>
       </div>
   </div>
@@ -72,12 +70,6 @@ export default {
   display: inline-block;
   width: 250px;
   height: 200px;
-  position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
 }
 
 .team-full .team-title {

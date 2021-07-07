@@ -88,6 +88,7 @@ const shared_data = {
 new Vue({
   router,
   data() {
+      //this.Login();
     return {
       store: {}
     };
@@ -103,6 +104,17 @@ new Vue({
         autoHideDelay: 3000
       });
     }
-  },
+  
+  // async Login(){
+  //   const response = await this.axios.post(
+  //     "http://localhost:3000/Login",
+  //     {
+  //       username: "daniel",
+  //       password: "123456"
+  //     }
+  //   );
+  //   console.log(response);
+  // }
+},
   render: (h) => h(App)
 }).$mount("#app");

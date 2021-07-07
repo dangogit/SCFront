@@ -34,11 +34,16 @@ name : "LeagueInfo",
     GamePreview,
   },
  data() {
+    this.getDetails(); 
     return {
       league_name: "", 
       current_season_name: "", 
       current_stage_name: "",
-      game_details: {}
+      game_details: {
+        date_time: undefined,
+        home_team_name: "",
+      guest_team_name: ""
+      }
     };
   },
     methods: {
@@ -51,28 +56,34 @@ name : "LeagueInfo",
         this.current_season_name = response.data.current_season_name;
         this.current_stage_name = response.data.current_stage_name;
         let game_data = response.data.game_details[0];
-        console.log(game_data)
-        let home_team_details = await this.axios.get(
-          `http://localhost:3000/teams/teamFullDetails/${game_data.home_team_id}`,
-          {}
-          );
-        let guest_team_details = await this.axios.get(
-          `http://localhost:3000/teams/teamFullDetails/${game_data.guest_team_id}`,
-          {}
-          );
+        //console.log(game_data);
+        // let home_team_details = await this.axios.get(
+        //   `http://localhost:3000/teams/teamFullDetails/${game_data.home_team_id}`,
+        //   {}
+        //   );
+        // let guest_team_details = await this.axios.get(
+        //   `http://localhost:3000/teams/teamFullDetails/${game_data.guest_team_id}`,
+        //   {}
+        //   );
+        // console.log(home_team_details);
+        let game_date_time = game_data.game_date_time;
+        let game_home_team = game_data.home_team_id;
+        let game_guest_team = game_data.guest_team_id;
         this.game_details = {
-          date_time: game_data.game_date_time,
-          home_team_name: home_team_details.data.team_name,
-          guest_team_name: guest_team_details.data.team_name,
-          }
+          date_time: game_date_time,
+          //home_team_name: home_team_details.data.team_name,
+          //guest_team_name: guest_team_details.data.team_name,
+          home_team_name: game_home_team,
+          guest_team_name: game_guest_team
+          };
+         // console.log(this.game_details);
       } catch (err) {
         console.log(err.response);
       }
     },
   },
     mounted(){
-    console.log("league details");
-    this.getDetails(); 
+    console.log("league details mounted");
   }
 }
 </script>

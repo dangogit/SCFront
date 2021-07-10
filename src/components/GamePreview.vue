@@ -1,14 +1,17 @@
 <template>
   <div class="game-preview">
     <div :title="id" class="game-title">
-      <b>Next game:</b>
+      <b>Game Preview:</b>
     </div>
     <ul class="game-content">
       <li> host: {{ hostTeam }}</li>
       <li> guest: {{ guestTeam }}</li>
-      <li> date: {{ date }}</li>
+      <li> date: {{ date.split('T')[0] }}</li>
+      <li> hour: {{ date.split('T')[1] }}</li>
      <!-- <li> time: {{ hour }}</li> -->
+     <br/>
     </ul>
+    <br/>
   </div>
 </template>
 
@@ -39,7 +42,7 @@ export default {
 <style>
 .game-preview {
   width: 250px;
-  height: 100px;
+  height: 120px;
 }
 
 .game-preview .game-title {

@@ -102,13 +102,19 @@ export default {
         );
         // console.log(response);
         // this.$root.loggedIn = true;
-        console.log(this.$root.store.login);
-        localStorage.setItem("username", this.form.username);
-        this.$root.store.username(this.form.username);
-        this.$router.push("/");
+        console.log(this.$root);
+        // localStorage.setItem("username", this.form.username);
+        // this.$root.store.username(this.form.username);
+        this.$root.store.login(this.form.username);
+        console.log(this.$root.store);
+
+        this.$router.push("/").catch(() => {
+          this.$forceUpdate();
+        });
+
       } catch (err) {
         console.log(err.response);
-        this.form.submitError = err.response.data.message;
+        this.form.submitError = err.response.data;
       }
     },
     onLogin() {

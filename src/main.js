@@ -2,6 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
+axios.defaults.withCredentials = true;
 
 import routes from "./routes";
 import VueRouter from "vue-router";
@@ -24,7 +25,8 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin, 
-  InputGroupPlugin
+  InputGroupPlugin,
+  ModalPlugin
 } from "bootstrap-vue";
 [
   FormGroupPlugin,
@@ -37,7 +39,8 @@ import {
   AlertPlugin,
   ToastPlugin,
   LayoutPlugin, 
-  InputGroupPlugin
+  InputGroupPlugin,
+  ModalPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 
@@ -90,7 +93,7 @@ new Vue({
   data() {
       //this.Login();
     return {
-      store: {}
+      store: shared_data
     };
   },
   methods: {

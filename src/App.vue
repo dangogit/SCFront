@@ -6,6 +6,8 @@
         <b-navbar-nav>
 
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
+        <b-nav-item v-b-modal.About>About</b-nav-item>
+
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
@@ -17,11 +19,18 @@
             User
           </template>
           <b-dropdown-item href="#">Favorites</b-dropdown-item>
-          <b-dropdown-item href="#">Log Out</b-dropdown-item>
+          <b-dropdown-item v-on:click="Logout"  href="#">Log Out </b-dropdown-item>
+          
         </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+    <b-modal id="About" title="About us"><p>
+      blaaaaaaa
+      blaaaaaaa
+      blaaaaaaa
+      </p>
+      </b-modal>
     <router-view />
   </div>
 </template>
@@ -30,7 +39,15 @@
 export default {
   name: "App",
   methods: {
-    Logout() {
+    async Logout() {
+      try {
+        const response = await this.axios.post(
+          `http://localhost:3000/Logout`
+        ); 
+      } catch (error) {
+        console.log(error);
+      }
+
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
 
